@@ -1,10 +1,11 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl } from '@angular/forms';
+import { animate, state, style, transition, trigger } from '@angular/animations';
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
+  selector: 'app-formulario',
+  templateUrl: './formulario.component.html',
+  styleUrls: ['./formulario.component.css'],
   animations: [
     trigger('entrada-izq', [
       state('in', style({ transform: 'translateX(0)' })),
@@ -28,13 +29,17 @@ import { Component, OnInit } from '@angular/core';
     ])
   ]
 })
-export class HomeComponent implements OnInit {
-  formulario:boolean=false;
+export class FormularioComponent implements OnInit {
+  usuarios:any[]=[]
+ profileForm = new FormGroup({
+    firstName: new FormControl(''),
+    lastName: new FormControl(''),
+  });
   constructor() { }
 
   ngOnInit(): void {
   }
-cambio(){
-this.formulario=true;
-}
+ onSubmit(){
+   this.usuarios.push(this.profileForm.value)
+ }
 }
